@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Total Students: <%= students.length %></h2>
+
+<a href="/students">All</a> |
+<a href="/students?branch=CSE">CSE</a> |
+<a href="/students?branch=Civil">Civil</a> |
+<a href="/students?branch=Mechanical">Mechanical</a>
+
+<hr>
+
+<% if (students.length == 0) { %>
+    <p>No students registered</p>
+<% } else { %>
+
+<table border="1">
+    <% students.forEach(function(s){ %>
+        <tr>
+            <td><%= s.name %></td>
+            <td><%= s.branch %></td>
+            <td>
+                <a href="/students/delete/<%= s.id %>">Delete</a>
+            </td>
+        </tr>
+    <% }) %>
+</table>
+
+<% } %>
+
+<br><br>
+<a href="/">Home</a>
+
+</body>
+</html>

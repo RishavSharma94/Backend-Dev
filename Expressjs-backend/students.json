@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "Raj",
+    "branch": "CSE"
+  },
+  {
+    "id": 2,
+    "name": "Mohit",
+    "branch": "ME"
+  },
+  {
+    "id": 3,
+    "name": "Yash",
+    "branch": "ME"
+  },
+  {
+    "id": 4,
+    "name": "Rohit",
+    "branch": "ME"
+  },
+  {
+    "id": 5,
+    "name": "Vivek",
+    "branch": "CSE"
+  },
+  {
+    "id": 6,
+    "name": "Ravi",
+    "branch": "ME"
+  },
+  {
+    "id": 7,
+    "name": "Rahul",
+    "age": 22
+  }
+]
