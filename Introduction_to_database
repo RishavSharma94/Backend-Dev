@@ -1,0 +1,78 @@
+Question.1-Explain the key differences between SQL and NoSQL databases with examples.
+Answer-SQL and NoSQL databases differ mainly in structure, flexibility, and scalability.
+
+SQL databases (Structured Query Language) are relational databases that store data in tables with rows and columns. They follow a fixed schema, meaning the structure of the data must be defined before storing it. SQL databases are best suited for applications where data is structured and relationships between tables are important. Examples include MySQL and PostgreSQL. They support complex queries using joins and ensure high consistency of data.
+
+On the other hand, NoSQL databases are non-relational and store data in flexible formats such as documents, key-value pairs, graphs, or wide-column stores. They do not require a fixed schema, which makes them suitable for handling unstructured or semi-structured data. NoSQL databases are highly scalable and are designed for distributed systems. Examples include MongoDB and Cassandra. They are commonly used in applications like social media, real-time analytics, and big data systems.
+
+In summary, SQL databases are best for structured data and complex relationships, while NoSQL databases are better for flexible, scalable, and high-performance applications.
+
+Question.2-What does the CAP theorem state, and why can’t a distributed system guarantee all three
+properties?
+Answer-The CAP theorem, proposed by Eric Brewer, states that a distributed system can provide only two out of the following three properties:
+
+
+Consistency (C): All nodes have the same data at the same time
+
+
+Availability (A): Every request gets a response
+
+
+Partition Tolerance (P): System continues to work despite network failures
+
+
+A distributed system cannot guarantee all three at once because network failures (partitions) are unavoidable. When a partition occurs, the system must choose between:
+
+
+maintaining Consistency (return correct but possibly delayed data), or
+
+
+maintaining Availability (return a response even if data may not be up-to-date)
+
+
+Therefore, in practice, systems choose either CP or AP, but not all three together.
+
+Question.3-Describe three scenarios where MongoDB would be preferred over a relational database.
+Answer-1. Flexible or Changing Data Structure
+When the data schema is not fixed or changes frequently. MongoDB allows storing data without a strict structure.
+Example: E-commerce websites where different products have different attributes.
+2. High Volume and Scalability Needs
+When the application handles large amounts of data and needs to scale horizontally across multiple servers.
+Example: Social media platforms or real-time analytics systems.
+3. Fast Development and Prototyping
+When quick development is required without spending time designing complex schemas.
+Example: Startups or projects where requirements change frequently.
+In these cases, MongoDB is more efficient and flexible compared to traditional relational databases.
+
+Question.4-Why does MongoDB use BSON internally instead of storing documents as JSON?
+Answer-MongoDB uses BSON (Binary JSON) instead of plain JSON for the following reasons:
+
+
+Faster processing: BSON is a binary format, so it is quicker for the database to read and write compared to text-based JSON.
+
+
+More data types: BSON supports additional types like Date, ObjectId, Binary data, which JSON does not support directly.
+
+
+Efficient storage: It is optimized for space and indexing, improving performance.
+
+
+Easy parsing: Machines can parse BSON faster than JSON.
+
+
+So, BSON is used because it is more efficient and powerful for database operations than regular JSON.
+
+Question-5-Write MongoDB queries to find all students with GPA above 3.5 and enrolled in “CS101”.
+Answer-If course is a single field:
+
+db.students.find({
+  GPA: { $gt: 3.5 },
+  course: "CS101"
+});
+
+If course is stored as an array:
+
+db.students.find({
+  GPA: { $gt: 3.5 },
+  course: { $in: ["CS101"] }
+});
