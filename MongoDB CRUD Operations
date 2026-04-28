@@ -1,0 +1,118 @@
+Question.1-What are the advantages of using Mongoose over the native MongoDB driver?
+Answer-Using Mongoose over the native MongoDB driver provides several advantages:
+
+
+Schema-based structure: Mongoose lets you define schemas, so your data has a proper structure and validation, unlike the flexible but unstructured native driver.
+
+
+Built-in validation: You can easily apply rules like required fields, data types, and default values.
+
+
+Simpler code (ORM/ODM): It provides an easy way to interact with the database using models instead of writing complex queries.
+
+
+Middleware support: You can run functions before or after operations (e.g., save, update).
+
+
+Better readability & maintainability: Code becomes cleaner and easier to manage, especially in large projects.
+
+
+So, Mongoose makes working with MongoDB easier, more organized, and developer-friendly.
+
+Question.2-Explain the difference between findOneAndUpdate() and updateOne().
+Answer-In MongoDB, both methods are used to update documents, but they differ in what they return and how they behave.
+findOneAndUpdate():
+
+
+Finds a document and updates it in a single operation
+
+
+Returns the document itself (either before or after update, based on option)
+
+
+Can use options like { new: true } to get updated document
+
+
+Useful when you need the updated data immediately
+
+
+updateOne():
+
+
+Updates the first matching document
+
+
+Returns a result object (acknowledgment), not the document
+
+
+Output includes fields like matchedCount and modifiedCount
+
+
+Faster and simpler when you don’t need the updated document
+
+
+
+Question.3-What is the purpose of middleware in Mongoose?
+Answer-Purpose of middleware:
+
+Automate tasks: Run logic automatically without writing it again and again
+Data validation & modification: Check or modify data before saving
+Security: For example, hash passwords before storing
+Logging & debugging: Track operations easily
+Business logic handling: Execute custom logic during database actions
+
+Example:
+Before saving a user, middleware can hash the password so it is not stored in plain text.
+
+Question.4-How do you implement pagination in Mongoose?
+Answer-Pagination in Mongoose is implemented using skip() and limit() to control how many documents are returned per page.
+
+Basic idea:
+
+limit → number of records per page
+skip → number of records to skip
+
+Formula:
+
+skip = (page - 1) * limit
+
+Example:
+
+const page = 2;
+const limit = 5;
+
+const students = await Student.find()
+  .skip((page - 1) * limit)
+  .limit(limit);
+
+This will return page 2 with 5 records per page.
+
+Optional (Total count for pagination):
+
+const total = await Student.countDocuments();
+
+Question.5-When should you use embedding vs referencing in MongoDB schema design?
+Answer-Embedding (store data inside one document)
+
+Use embedding when:
+
+Data is closely related and always used together
+Relationship is one-to-one or one-to-few
+You want fast reads (no joins needed)
+Data size is small and doesn’t grow too much
+
+Example:
+A user document storing address inside it.
+ Best for: performance and simplicity
+
+Referencing (store data in separate documents using IDs)
+
+Use referencing when:
+
+Data is large or frequently growing
+Relationship is one-to-many or many-to-many
+Data is accessed independently
+You want to avoid duplication
+
+Example:
+User and Orders stored in separate collections, linked by userId.
